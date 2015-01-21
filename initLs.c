@@ -38,6 +38,7 @@ t_lsDir	*initCurrentDir(void)
 	if ((lsDirs->name = (char *)malloc(sizeof(char))) == NULL)
 		ft_exit("initCurrentDir", 1);
 	lsDirs->name[0] = '.';
+	lsDirs->isFile = DISABLED;
 	lsDirs->start = NULL;
 	lsDirs->end = NULL;
 	lsDirs->next = NULL;

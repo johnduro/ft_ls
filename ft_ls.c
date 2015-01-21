@@ -29,6 +29,7 @@ t_lsDir		*newDir(char *name)
 	if ((dir = (t_lsDir*)malloc(sizeof(*dir))) == NULL)
 		ft_exit("newDir", 1);
 	dir->name = ft_strdup(name);
+	dir->isFile = DISABLED;
 	dir->start = NULL;
 	dir->end = NULL;
 	dir->next = NULL;
@@ -42,6 +43,26 @@ void	addToLsDirs(t_lsDir *listPtr, t_lsDir *dir)
 		listPtr = listPtr->next;
 	dir->prev = listPtr;
 	listPtr->next = dir;
+	return ;
+}
+
+void	getLsInfos(t_ls *ls)
+{
+	t_lsDir		*dirPtr;
+
+	dirPtr = ls->lsDirs;
+	while (dirPtr)
+	{
+		// a faire
+		dirPtr = dirPtr->next;
+	}
+}
+
+void	makeLs(t_ls *ls)
+{
+	getLsInfos(ls);
+	printLs(ls);
+	return ;
 }
 
 int		main(int argc, char **argv)
@@ -51,6 +72,7 @@ int		main(int argc, char **argv)
 	(void)argc;
 	argv++;
 	ls = initLs(argv);
+	makeLs(ls);
 	debugLs(ls);
 	freeLs(&ls);
 	return (0);

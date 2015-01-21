@@ -45,6 +45,7 @@ struct						s_lsFile
 struct						s_lsDir
 {
 	char					*name; // ?
+	t_bool					isFile;
 	t_lsFile				*start;
 	t_lsFile				*end;
 	t_lsDir					*next;
