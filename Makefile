@@ -16,7 +16,10 @@ CFLAGS=-Wall -Werror -Wextra -g
 INCLUDES=-I ./libft/includes -L /usr/lib
 LIBS=./libft/libft.a
 
-SRC=ft_ls.c
+SRC=ft_ls.c \
+    initLs.c \
+    debugLs.c \
+    freeLs.c
 
 OBJ=$(SRC:.c=.o)
 

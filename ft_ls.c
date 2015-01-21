@@ -18,22 +18,41 @@
 /* strerror		  char *strerror(int errnum);char *strerror(int errnum); */
 /* exit			  void _exit(int status); */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/xattr.h>
-#include <time.h>
 #include "ft_ls.h"
+
+
+
+t_lsDir		*newDir(char *name)
+{
+	t_lsDir		*dir;
+
+	if ((dir = (t_lsDir*)malloc(sizeof(*dir))) == NULL)
+		ft_exit("newDir", 1);
+	dir->name = ft_strdup(name);
+	dir->start = NULL;
+	dir->end = NULL;
+	dir->next = NULL;
+	dir->prev = NULL;
+	return (dir);
+}
+
+void	addToLsDirs(t_lsDir *listPtr, t_lsDir *dir)
+{
+	while (listPtr->next)
+		listPtr = listPtr->next;
+	dir->prev = listPtr;
+	listPtr->next = dir;
+}
 
 int		main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	t_ls		*ls;
 
+	(void)argc;
+	argv++;
+	ls = initLs(argv);
+	debugLs(ls);
+	freeLs(&ls);
 	return (0);
 }
 
