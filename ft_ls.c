@@ -1,6 +1,6 @@
 
 /* write */
-/* opendir        DIR *opendir(const char *name); */
+/* 	        DIR *opendir(const char *name); */
 /* readdir        struct dirent *readdir(DIR *dirp); */
 /* closedir       int closedir(DIR *dirp); */
 /* stat			  int stat(const char *path, struct stat *buf); */
@@ -19,8 +19,6 @@
 /* exit			  void _exit(int status); */
 
 #include "ft_ls.h"
-
-
 
 t_lsDir		*newDir(char *name)
 {
@@ -49,22 +47,10 @@ void	addToLsDirs(t_lsDir *listPtr, t_lsDir *dir)
 	return ;
 }
 
-void	getLsInfos(t_ls *ls)
-{
-	t_lsDir		*dirPtr;
-
-	dirPtr = ls->lsDirs;
-	while (dirPtr)
-	{
-		// a faire
-		dirPtr = dirPtr->next;
-	}
-}
-
 void	makeLs(t_ls *ls)
 {
 	getLsInfos(ls);
-	printLs(ls);
+	// printLs(ls);
 	return ;
 }
 

@@ -46,7 +46,7 @@ t_lsDir	*initCurrentDir(void)
 	return (lsDirs);
 }
 
-void	addFileToDir(t_ls *ls, t_lsDir *dir)
+void	addFileToLsDir(t_ls *ls, t_lsDir *dir)
 {
 	t_lsDir		*ptr;
 

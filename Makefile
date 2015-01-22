@@ -19,7 +19,8 @@ LIBS=./libft/libft.a
 SRC=ft_ls.c \
     initLs.c \
     debugLs.c \
-    freeLs.c
+    freeLs.c \
+    infosLS.c
 
 OBJ=$(SRC:.c=.o)
 
