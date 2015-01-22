@@ -29,7 +29,10 @@ t_lsDir		*newDir(char *name)
 	if ((dir = (t_lsDir*)malloc(sizeof(*dir))) == NULL)
 		ft_exit("newDir", 1);
 	dir->name = ft_strdup(name);
-	dir->isFile = DISABLED;
+	if ((dir->dirPtr = opendir(name)) != NULL)
+		dir->isFile = DISABLED;
+	else
+		dir->isFile = ENABLED;
 	dir->start = NULL;
 	dir->end = NULL;
 	dir->next = NULL;

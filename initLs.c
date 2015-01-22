@@ -46,6 +46,34 @@ t_lsDir	*initCurrentDir(void)
 	return (lsDirs);
 }
 
+void	addFileToDir(t_ls *ls, t_lsDir *dir)
+{
+	t_lsDir		*ptr;
+
+	ptr = ls->lsDirs;
+	while (ptr->isFile && ptr->next)
+		ptr = ptr->next;
+	if (ptr == ls->lsDirs)
+	{
+		ptr->prev = dir;
+		dir->next = ptr;
+		ls->lsDirs = dir;
+	}
+	else if (ptr->next)
+	{
+		dir->prev = ptr;
+		dir->next = ptr->next;
+		ptr->next->prev = dir;
+		ptr->next = dir;
+	}
+	else if (ptr->next == NULL)
+	{
+		dir->prev = ptr;
+		ptr->next = dir;
+	}
+	return ;
+}
+
 void	initDirs(t_ls *ls, char *arg)
 {
 	t_lsDir		*dir;
@@ -54,7 +82,12 @@ void	initDirs(t_ls *ls, char *arg)
 	if (ls->lsDirs == NULL)
 		ls->lsDirs = dir;
 	else
-		addToLsDirs(ls->lsDirs, dir);
+	{
+		if (!dir->isFile)
+			addToLsDirs(ls->lsDirs, dir);
+		else
+			addFileToLsDir(ls, dir);
+	}
 }
 
 t_ls	*initLs(char **argv)
