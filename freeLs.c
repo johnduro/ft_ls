@@ -27,8 +27,8 @@ void			freeLsDirs(t_lsDir *dir)
 		keep = dir->next;
 		if (dir->name)
 			free(dir->name);
-		if (dir->dirPtr)
-			closedir(dir->dirPtr);
+	/*	if (dir->dirPtr)
+			closedir(dir->dirPtr);*/
 		if (dir->start)
 			freeLsFiles(dir->start);
 		free(dir);

@@ -43,10 +43,11 @@ t_lsDir	*initCurrentDir(void)
 	lsDirs->end = NULL;
 	lsDirs->next = NULL;
 	lsDirs->prev = NULL;
+	lsDirs->dirPtr = opendir(lsDirs->name);
 	return (lsDirs);
 }
 
-void	addFileToDir(t_ls *ls, t_lsDir *dir)
+void	addFileToLsDir(t_ls *ls, t_lsDir *dir)
 {
 	t_lsDir		*ptr;
 
@@ -79,6 +80,10 @@ void	initDirs(t_ls *ls, char *arg)
 	t_lsDir		*dir;
 
 	dir = newDir(arg);
+	/* A verifier avant */
+	printf("arg : %s\n", arg);
+	ls->currentDir = arg;
+	/* ! */
 	if (ls->lsDirs == NULL)
 		ls->lsDirs = dir;
 	else
@@ -108,8 +113,12 @@ t_ls	*initLs(char **argv)
 			argv++;
 		}
 	}
-	if (ls->lsDirs == NULL)
+
+	if (ls->lsDirs == NULL) {
 		ls->lsDirs = initCurrentDir();
+		ls->currentDir = ".";
+	}
+	ls->currentDirBrowsed = ls->currentDir;
 	return (ls);
 }
 

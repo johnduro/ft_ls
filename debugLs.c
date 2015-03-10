@@ -48,3 +48,8 @@ void	debugLs(t_ls *ls)
 	if (ls->lsDirs)
 		debugLsDirs(ls->lsDirs);
 }
+
+/*void	debugLsInfos(t_ls *ls)
+{
+	
+}*/
